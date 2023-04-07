@@ -7,6 +7,9 @@ public class Fan {
     public boolean on = false;
     public double radius = 5;
     public String color = "Blue";
+    public static final int SLOW = 1;
+    public static final int MEDIUM = 2;
+    public static final int FAST = 3;
 
     public Fan(int speed, boolean on, double radius, String color) {
 
@@ -15,11 +18,6 @@ public class Fan {
         this.radius = radius;
         this.color = color;
     }
-
-    public static final int SLOW = 1;
-    public static final int MEDIUM = 2;
-    public static final int FAST = 3;
-
     public int getSlow() {
         return SLOW;
     }
