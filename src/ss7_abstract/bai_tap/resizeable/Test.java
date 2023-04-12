@@ -1,17 +1,21 @@
 package ss7_abstract.bai_tap.resizeable;
+
+import java.util.Arrays;
+
 public class Test {
     public static void main(String[] args) {
         Circle circle = new Circle(4);
-        System.out.println("Area circle before: " + circle.getArea());
-        System.out.println("After: ");
-        circle.resize(5);
         Rectangle rectangle = new Rectangle(5, 6);
-        System.out.println("Area rectangle before: " + rectangle.getArea());
-        System.out.println("After: ");
-        rectangle.resize(5);
         Square square = new Square(5);
-        System.out.println("Area square before: " + square.getArea());
-        System.out.println("After: ");
-        square.resize(5);
+        Shape[] shapes = new Shape[3];
+        shapes[0] = circle;
+        shapes[1] = rectangle;
+        shapes[2] = square;
+        for (int i = 0; i < shapes.length; i++) {
+            if (shapes[i] instanceof IResizeable) {
+                ((IResizeable) shapes[i]).resize(10);
+            }
+        }
+        System.out.println(shapes);
     }
 }

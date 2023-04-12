@@ -1,5 +1,5 @@
 package ss7_abstract.bai_tap.resizeable;
-public class Rectangle implements IResizeable {
+public class Rectangle extends Shape implements IResizeable {
     private double width = 1.0;
     private double length = 1.0;
     public Rectangle() {
@@ -26,7 +26,7 @@ public class Rectangle implements IResizeable {
     public double getPerimeter() {
         return 2 * (width + this.length);
     }
-    @Override
+
     public String toString() {
         return "Rectangle: " +
                 "width=" + width +

@@ -8,8 +8,8 @@ public class ShapeTest {
         shapes[2] = new Square(5);
         for (int i = 0; i < shapes.length; i++) {
             System.out.println(shapes[i].toString());
-            if (shapes[i] instanceof IColorable) {
-                shapes[i].howToColor();
+                if (shapes[i] instanceof Square) {
+                    ((Square) shapes[i]).howToColor();
             }
         }
     }

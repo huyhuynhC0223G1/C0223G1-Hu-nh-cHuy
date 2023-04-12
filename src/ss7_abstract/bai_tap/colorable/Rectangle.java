@@ -1,5 +1,5 @@
 package ss7_abstract.bai_tap.colorable;
-public class Rectangle extends Shape implements IColorable {
+public class Rectangle extends Shape {
     private double width = 1.0;
     private double length = 1.0;
     public Rectangle() {
@@ -30,9 +30,5 @@ public class Rectangle extends Shape implements IColorable {
     public String toString() {
         return "area rectangle= " + getArea();
 
-    }
-    @Override
-    public void howToColor() {
-//        System.out.println("non");
     }
 }
