@@ -12,11 +12,10 @@ public class StringConsecutiveMax {
         ArrayList<Character> max = new ArrayList<>();
         ArrayList<Character> list = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {
-            if (list.size() > 1 && string.charAt(i) <= list.get((list.size() - 1)) && list.contains(string.charAt(i))) {
+            if (list.size() >= 1 && string.charAt(i) <= list.get((list.size() - 1))) {
                 list.clear();
-            } else {
-                list.add(string.charAt(i));
             }
+            list.add(string.charAt(i));
             if (list.size() > max.size()) {
                 max.clear();
                 max.addAll(list);
