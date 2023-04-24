@@ -99,7 +99,7 @@ public class ProductService implements IProductService {
             System.out.println("Thông tin sản phẩm bạn tìm kiếm là: ");
             this.dislayProduct();
         } else {
-            System.out.println("Không tìm trhaays sản phẩm.");
+            System.out.println("Không tìm thấy sản phẩm.");
         }
     }
 

@@ -20,7 +20,7 @@ public class Main {
             System.out.println(s);
         }
     }
-    
+
     public static void writeDataToFile(String path, List<Student> students) {
         try {
             FileOutputStream fos = new FileOutputStream(path);

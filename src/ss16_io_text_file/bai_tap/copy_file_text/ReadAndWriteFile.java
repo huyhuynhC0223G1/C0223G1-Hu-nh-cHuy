@@ -49,7 +49,6 @@ public class ReadAndWriteFile {
         try {
             fileWriter = new FileWriter(file1, true);
             bufferedWriter = new BufferedWriter(fileWriter);
-            int count = 0;
             for (int i = 0; i < arr.size(); i++) {
                 bufferedWriter.write("" + arr.get(i));
                 bufferedWriter.newLine();
