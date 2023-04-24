@@ -7,8 +7,8 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 public class ReadAndWriteFile {
-    String sourceFile = "src/ss16_io_text_file/bai_tap/copy_file_text/source.txt";
-    String targetFile = "src/ss16_io_text_file/bai_tap/copy_file_text/target.txt";
+    final String PATH_SOURCE_FILE = "src/ss16_io_text_file/bai_tap/copy_file_text/source.txt";
+    final String PATH_TARGET_FILE = "src/ss16_io_text_file/bai_tap/copy_file_text/target.txt";
 
     public List<Integer> readFile(String sourceFile) {
         List<Integer> arr = new ArrayList<>();
@@ -25,16 +25,25 @@ public class ReadAndWriteFile {
                 count += temp.length();
             }
             arr.add(Integer.valueOf(count));
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Không tồn tại file hoặc nội dung bị lỗi");
+        } finally {
+            try {
+                bufferedReader.close();
+                fileReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return arr;
     }
 
+
     public void writeFile(String targetFile, List<Integer> arr) {
-        File file1 = new File(this.targetFile);
+        File file1 = new File(this.PATH_TARGET_FILE);
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         try {
@@ -46,6 +55,7 @@ public class ReadAndWriteFile {
                 bufferedWriter.newLine();
             }
             bufferedWriter.flush();
+            bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

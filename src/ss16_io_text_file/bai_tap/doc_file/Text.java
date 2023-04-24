@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Text {
     public static void main(String[] args) {
-        String path = "src/ss16_io_text_file/bai_tap/doc_file/country";
+        final String path = "src/ss16_io_text_file/bai_tap/doc_file/country";
         BufferedReader br = null;
         try {
             String line;
