@@ -7,18 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository implements IProductRepository {
+    public final String PATH = "src/ss17_binary_file_and_serialization/bai_tap/Data/product.txt";
     List<Product> products = new ArrayList<>();
-    private Serialization serialization = new Serialization();
 
     @Override
     public List<Product> getProductList() {
-        products = serialization.readDataFromFile("src/ss17_binary_file_and_serialization/bai_tap/Data/product.txt");
+        products = Serialization.readDataFromFile(PATH);
         return products;
     }
 
     @Override
-    public void addNewProduct(List<Product> product) {
-        serialization.writeDataToFile("src/ss17_binary_file_and_serialization/bai_tap/Data/product.txt", product);
+    public void addNewProduct(Product product) {
+        products.add(product);
+        Serialization.writeDataToFile(PATH, products);
     }
 
     @Override

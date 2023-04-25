@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class ProductService implements IProductService {
     Scanner scanner = new Scanner(System.in);
     private ProductRepository productRepository = new ProductRepository();
-    private List<Product> productList = new ArrayList<>();
 
     @Override
     public void dislayProduct() {
@@ -34,8 +33,7 @@ public class ProductService implements IProductService {
         System.out.println("Nhập mô tả sản phẩm: ");
         String describeProduct = scanner.nextLine();
         Product newProduct = new Product(idProduct, nameProduct, priceProduct, exportProduct, describeProduct);
-        productList.add(newProduct);
-        productRepository.addNewProduct(productList);
+        productRepository.addNewProduct(newProduct);
         System.out.println("Thêm mới sản phẩm" + newProduct.getName() + "thành công.");
     }
 
@@ -45,8 +43,10 @@ public class ProductService implements IProductService {
         boolean flag = false;
         System.out.println("Nhập tên sản phẩm bạn muốn tìm:");
         String search = scanner.nextLine();
-        for (int i = 0; i <= productRepository.getProductList().size(); i++) {
-            if (search.equals(productRepository.getProductList().get(i).getName())) {
+        List<Product> productList = productRepository.getProductList();
+        int sizeproduct = productList.size();
+        for (int i = 0; i <= sizeproduct; i++) {
+            if (search.equals(productList.get(i).getName())) {
                 index = i;
                 flag = true;
                 break;
@@ -54,7 +54,7 @@ public class ProductService implements IProductService {
         }
         if (flag) {
             System.out.println("Thông tin sản phẩm bạn tìm kiếm là: ");
-            System.out.println(productRepository.getProductList().get(index));
+            System.out.println(productList.get(index));
             ;
         } else {
             System.out.println("Không tìm thấy sản phẩm");
