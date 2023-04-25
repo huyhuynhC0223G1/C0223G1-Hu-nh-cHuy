@@ -18,7 +18,7 @@ public class NameClassExample {
         }
     }
 
-    private static final String NAME_CLASS_EXAMPLE = "^^[APC]+(\\d{4})+[GHIK]$";
+    private static final String NAME_CLASS_EXAMPLE = "^[APC]+(\\d{4})+[GHIK]$";
 
     public NameClassExample() {
         pattern = Pattern.compile(NAME_CLASS_EXAMPLE);
