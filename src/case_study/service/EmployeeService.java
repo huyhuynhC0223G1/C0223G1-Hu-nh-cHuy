@@ -5,12 +5,15 @@ import case_study.model.Employee;
 import case_study.repository.EmployeeRepository;
 import case_study.ultils.EmployeeValidate;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeService implements IEmployeeService {
     Scanner scanner = new Scanner(System.in);
     private EmployeeRepository employeeRepository = new EmployeeRepository();
+    EmployeeValidate employeeValidate = new EmployeeValidate();
 
     @Override
     public void dislayStaff() {
@@ -23,19 +26,43 @@ public class EmployeeService implements IEmployeeService {
     //2.Mã nhân viên, Họ tên, Ngày sinh, Giới tính, Số CMND, Số Điện Thoại, Email, Trình độ, Vị trí, lương
     @Override
     public void addNewStaff() {
-        String idStaff = null;
+        String idStaff;
         do {
             System.out.println("Nhập id nhân viên: NV-YYYY");
             idStaff = scanner.nextLine();
         } while (!EmployeeValidate.checkEmployeeId(idStaff));
-        String nameStaff = null;
+        String nameStaff;
         do {
             System.out.println("Nhập tên nhân viên:");
             nameStaff = scanner.nextLine();
         } while (!EmployeeValidate.checkEmployeeName(nameStaff));
-
-        System.out.println("Nhập ngày sinh nhân viên:");
-        String dayOfBirthStaff = scanner.nextLine();
+        String dayOfBirthStaff;
+        boolean checkDateOfBirth = false;
+        do {
+            System.out.println("Nhập ngày sinh nhân viên:");
+            dayOfBirthStaff = scanner.nextLine();
+            if (employeeValidate.checkDateOfBirth(dayOfBirthStaff)) {
+                LocalDate dayOfBirth = LocalDate.parse(dayOfBirthStaff);
+                LocalDate now = LocalDate.now();
+                if (Period.between(dayOfBirth, now).getYears() >= 18) {
+                    System.out.println("Nhập thành công");
+                    checkDateOfBirth = false;
+                } else {
+                    System.out.println("chưa đủ 18 tuổi\n" +
+                            "chọn 1 để nhập lại nếu sai sót\n" +
+                            "chọn khác 1 để thoát\n");
+                    String choice = scanner.nextLine();
+                    if (choice.equals("1")) {
+                        checkDateOfBirth = true;
+                    } else {
+                        return;
+                    }
+                }
+            } else {
+                System.out.println("nhập sai định dạng, mời nhập lại");
+                checkDateOfBirth = true;
+            }
+        } while (checkDateOfBirth);
 
         System.out.println("Chọn giới tính nhân viên: \n" +
                 "1. Nam\n" +
@@ -47,12 +74,12 @@ public class EmployeeService implements IEmployeeService {
         } else if (choice.trim().equals("2")) {
             genderStaff = "Nữ";
         }
-        String identityCardStaff = null;
+        String identityCardStaff;
         do {
             System.out.println("Nhập số CMNH nhân viên:");
             identityCardStaff = scanner.nextLine();
         } while (!EmployeeValidate.checkEmployeeIdentityCard(identityCardStaff));
-        String numberphoneStaff = null;
+        String numberphoneStaff;
         do {
             System.out.println("Nhập số điện thoại nhân viên:");
             numberphoneStaff = scanner.nextLine();
@@ -145,18 +172,10 @@ public class EmployeeService implements IEmployeeService {
         System.out.println("Mời bạn nhập id cần sửa: NV-YYYY");
         String idStaff = scanner.nextLine();
         List<Employee> employees = employeeRepository.getEmployyeStaff();
-        int size = employeeRepository.getEmployyeStaff().size();
-        boolean flag = false;
-        int index = 0;
-        for (int i = 0; i <= size; i++) {
-            if (employeeRepository.checkEmployee(idStaff)) {
-                flag = true;
-                index = i;
-                break;
-            }
-        }
-        if (flag) {
-            Employee employee = employees.get(index);
+        int checkidedit = employeeRepository.checkEmployee(idStaff);
+        if (checkidedit >= 0) {
+            boolean flag = true;
+            Employee employee = employees.get(checkidedit);
             System.out.println("Mời bạn chọn thông tin cần sửa:\n" +
                     "1.Tên nhân viên\n" +
                     "2.Ngày sinh nhân viên\n" +
@@ -173,7 +192,7 @@ public class EmployeeService implements IEmployeeService {
                 switch (choiedit) {
                     case "1":
                         flag = false;
-                        String editNameStaff = null;
+                        String editNameStaff;
                         do {
                             System.out.println("Nhập tên nhân viên:");
                             editNameStaff = scanner.nextLine();
@@ -182,8 +201,33 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "2":
                         flag = false;
-                        System.out.println("Nhập ngày sinh nhân viên:");
-                        String editDayOfBirthStaff = scanner.nextLine();
+                        String editDayOfBirthStaff;
+                        boolean checkDateOfBirth = false;
+                        do {
+                            System.out.println("Nhập ngày sinh nhân viên:");
+                            editDayOfBirthStaff = scanner.nextLine();
+                            if (employeeValidate.checkDateOfBirth(editDayOfBirthStaff)) {
+                                LocalDate dayOfBirth = LocalDate.parse(editDayOfBirthStaff);
+                                LocalDate now = LocalDate.now();
+                                if (Period.between(dayOfBirth, now).getYears() >= 18) {
+                                    System.out.println("Nhập thành công");
+                                    checkDateOfBirth = false;
+                                } else {
+                                    System.out.println("chưa đủ 18 tuổi\n" +
+                                            "chọn 1 để nhập lại nếu sai sót\n" +
+                                            "chọn khác 1 để thoát\n");
+                                    String choice = scanner.nextLine();
+                                    if (choice.equals("1")) {
+                                        checkDateOfBirth = true;
+                                    } else {
+                                        return;
+                                    }
+                                }
+                            } else {
+                                System.out.println("nhập sai định dạng, mời nhập lại");
+                                checkDateOfBirth = true;
+                            }
+                        } while (checkDateOfBirth);
                         employee.setDayOfBirth(editDayOfBirthStaff);
                         break;
                     case "3":
@@ -202,7 +246,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "4":
                         flag = false;
-                        String editIdentityCardStaff = null;
+                        String editIdentityCardStaff;
                         do {
                             System.out.println("Nhập số CMNH nhân viên:");
                             editIdentityCardStaff = scanner.nextLine();
@@ -211,7 +255,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "5":
                         flag = false;
-                        String editNumberphoneStaff = null;
+                        String editNumberphoneStaff;
                         do {
                             System.out.println("Nhập số điện thoại nhân viên:");
                             editNumberphoneStaff = scanner.nextLine();
@@ -219,7 +263,6 @@ public class EmployeeService implements IEmployeeService {
                         } while (!EmployeeValidate.checkEmployeeNumberPhone(editNumberphoneStaff));
                         break;
                     case "6":
-                        flag = false;
                         System.out.println("Nhập email nhân viên:");
                         String editEmailStaff = scanner.nextLine();
                         employee.setEmail(editEmailStaff);
@@ -305,7 +348,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "9":
                         flag = false;
-                        String editWageStaff = null;
+                        String editWageStaff;
                         do {
                             System.out.println("Nhập lương nhân viên:");
                             editWageStaff = scanner.nextLine();
@@ -313,7 +356,7 @@ public class EmployeeService implements IEmployeeService {
                         employee.setWage(editWageStaff);
                         break;
                     case "10":
-                        flag = true;
+                        flag = false;
                         employeeManagement.employeeMenu();
                         break;
                 }
@@ -322,7 +365,6 @@ public class EmployeeService implements IEmployeeService {
         } else {
             System.out.println("Không tìm thấy nhân viên cần sửa");
         }
-
         this.dislayStaff();
     }
 }

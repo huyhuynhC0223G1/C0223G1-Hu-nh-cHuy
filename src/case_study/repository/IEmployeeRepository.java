@@ -11,5 +11,5 @@ public interface IEmployeeRepository extends IRepository {
 
     void editEmployeeStaff(String id, Employee employee);
 
-    boolean checkEmployee(String id);
+    int checkEmployee(String id);
 }

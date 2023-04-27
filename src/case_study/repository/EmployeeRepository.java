@@ -26,17 +26,17 @@ public class EmployeeRepository implements IEmployeeRepository {
     @Override
     public void editEmployeeStaff(String id, Employee employee) {
         employeeList = ReadAndWriteFileEmployee.readEmployeeListFromFile(EMPLOYEE_FILE_PATH);
-        ReadAndWriteFileEmployee.writeEmployeeListToFile(employeeList.set(id, employee));
+        employeeList.set(checkEmployee(id), employee);
         ReadAndWriteFileEmployee.writeEmployeeListToFile(employeeList, EMPLOYEE_FILE_PATH);
     }
 
     @Override
-    public boolean checkEmployee(String id) {
-        for (Employee s : employeeList) {
-            if (s.getId().equals(id)) {
-                return true;
+    public int checkEmployee(String id) {
+        for (int i = 0; i < employeeList.size();i++) {
+            if (employeeList.get(i).getId().equals(id)) {
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 }
