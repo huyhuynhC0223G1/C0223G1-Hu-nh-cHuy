@@ -4,8 +4,12 @@ import case_study.model.Employee;
 
 import java.util.List;
 
-public interface IEmployeeRepository extends IRepository{
+public interface IEmployeeRepository extends IRepository {
     List<Employee> getEmployyeStaff();
+
     void addEmployyeStaff(Employee employee);
-    boolean editEmployyeStaff();
+
+    void editEmployeeStaff(String id, Employee employee);
+
+    boolean checkEmployee(String id);
 }

@@ -41,18 +41,20 @@ public class ProductService implements IProductService {
         this.dislayProduct();
         System.out.println("Nhập mã sản phẩm muốn sửa:");
         int productEditID = Integer.parseInt(scanner.nextLine());
+        List<Product> productList = ProductRepository.products;
         for (int i = 0; i <= size; i++) {
-            if (productEditID == ProductRepository.products.get(i).getiD()) {
+            if (productEditID == productList.get(i).getiD()) {
                 flag = true;
             }
             if (flag) {
+                Product product = productList.get(i);
                 System.out.println("Nhập tên sản phẩm muốn sửa:");
                 String productEditName = scanner.nextLine();
+                product.setProductName(productEditName);
                 System.out.println("Nhập giá sản phẩm muốn sửa:");
                 int productEditPrice = Integer.parseInt(scanner.nextLine());
-                ProductRepository.products.get(i).setiD(productEditID);
-                ProductRepository.products.get(i).setProductName(productEditName);
-                ProductRepository.products.get(i).setProductPrice(productEditPrice);
+                product.setProductPrice(productEditPrice);
+                productRepository.editProductByID(productEditID,product);
                 break;
             } else {
                 System.out.println("Không tìm thấy sản phẩm cần sửa");

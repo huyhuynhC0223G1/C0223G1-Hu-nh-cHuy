@@ -3,10 +3,7 @@ package case_study.controller;
 import java.util.Scanner;
 
 public class FuramaController {
-    public static void main(String[] args) {
-        FuramaController furamaController = new FuramaController();
-        furamaController.displayMainMenu();
-    }
+
     public void displayMainMenu() {
         Scanner input = new Scanner(System.in);
         EmployeeManagement employeeManagement = new EmployeeManagement();
@@ -43,9 +40,10 @@ public class FuramaController {
                     break;
                 case "6":
                     flag = false;
-                    System.out.println("Thoát chương trình: ");
+                    System.out.println("Thoát chương trình. ");
+                    break;
                 default:
-                    System.out.println("Bạn chon sai chức năng:");
+                    System.out.println("Bạn chọn sai chức năng.");
             }
         } while (flag);
     }

@@ -26,12 +26,15 @@ public class EmployeeManagement {
                     employeeService.addNewStaff();
                     break;
                 case "3":
+                    employeeService.editStaff();
+                    break;
                 case "4":
                     flag = false;
                     furamaController.displayMainMenu();
+                    break;
                 default:
                     System.out.println("Bạn chọn sai chức năng.");
             }
-        } while (!flag);
+        } while (flag);
     }
 }

@@ -6,14 +6,14 @@ public class Employee extends Person {
 
     private String wage;
 
-    public Employee(String s, String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9) {
+    public Employee() {
     }
 
-    public Employee(String id, String name, String dayOfBirth, String gender, String identityCard, String numberPhone, String email, String level, String location, String wage, String level1, String location1, String wage1) {
+    public Employee(String id, String name, String dayOfBirth, String gender, String identityCard, String numberPhone, String email, String level, String location, String wage) {
         super(id, name, dayOfBirth, gender, identityCard, numberPhone, email, level, location, wage);
-        this.level = level1;
-        this.location = location1;
-        this.wage = wage1;
+        this.level = level;
+        this.location = location;
+        this.wage = wage;
     }
 
     public String getLevel() {
@@ -40,8 +40,16 @@ public class Employee extends Person {
         this.wage = wage;
     }
 
+    @Override
+    public String toString() {
+        return  super.toString()+
+                "level='" + level + '\'' +
+                ", location='" + location + '\'' +
+                ", wage='" + wage + '\'' ;
+    }
+
     public String getInfoToCsv() {
-        return super.getId() + "," + super.getName() + "," + super.getDayOfBirth() + "," + super.getGender() + "," + super.getIdentityCard() + "," + super.getNumberPhone() + "," + "," + super.getEmail() + "," + getLevel() + "," +getLocation() +getWage();
+        return super.getId() + "," + super.getName() + "," + super.getDayOfBirth() + "," + super.getGender() + "," + super.getIdentityCard() + "," + super.getNumberPhone() + "," + super.getEmail() + "," + level + "," + location + "," + wage;
     }
 }
 

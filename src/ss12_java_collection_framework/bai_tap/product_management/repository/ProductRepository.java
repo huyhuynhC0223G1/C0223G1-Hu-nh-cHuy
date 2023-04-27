@@ -20,7 +20,8 @@ public class ProductRepository implements IProductRepositor {
     }
 
     @Override
-    public boolean editProductByID(int id) {
+    public boolean editProductByID(int id, Product product) {
+        products.add(product);
         return false;
     }
 

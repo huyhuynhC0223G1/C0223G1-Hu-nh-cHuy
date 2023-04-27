@@ -30,10 +30,10 @@ public class ReadAndWriteFileEmployee {
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line = null;
+            String line ;
             while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
                 String[] employeeArr = line.split(",");
-                Employee employee = new Employee(employeeArr[0], employeeArr[1], employeeArr[2], employeeArr[3], employeeArr[4], employeeArr[5],employeeArr[6],employeeArr[7],employeeArr[8],employeeArr[9]);
+                Employee employee = new Employee(employeeArr[0],employeeArr[1],employeeArr[2],employeeArr[3],employeeArr[4],employeeArr[5],employeeArr[6],employeeArr[7],employeeArr[8],employeeArr[9]);
                 employeeList.add(employee);
             }
             bufferedReader.close();

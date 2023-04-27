@@ -7,7 +7,7 @@ import java.util.List;
 public interface IProductRepositor {
     List<Product> getProductList();
 
-    boolean editProductByID(int id);
+    boolean editProductByID(int id, Product product);
 
     void addNewProduct(Product product);
 
