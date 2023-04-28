@@ -20,7 +20,7 @@ public class EmployeeManagement {
             String choice = input.nextLine();
             switch (choice) {
                 case "1":
-                    employeeService.dislayStaff();
+                    employeeService.dislay();
                     break;
                 case "2":
                     employeeService.addNewStaff();
@@ -30,7 +30,6 @@ public class EmployeeManagement {
                     break;
                 case "4":
                     flag = false;
-                    furamaController.displayMainMenu();
                     break;
                 default:
                     System.out.println("Bạn chọn sai chức năng.");

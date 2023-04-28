@@ -11,7 +11,7 @@ public class EmployeeRepository implements IEmployeeRepository {
     private static final String EMPLOYEE_FILE_PATH = "src/case_study/data/employee.csv";
 
     @Override
-    public List<Employee> getEmployyeStaff() {
+    public List<Employee> showEmployee() {
         employeeList = ReadAndWriteFileEmployee.readEmployeeListFromFile(EMPLOYEE_FILE_PATH);
         return employeeList;
     }

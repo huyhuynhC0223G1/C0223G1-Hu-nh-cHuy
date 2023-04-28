@@ -1,19 +1,19 @@
 package case_study.ultils;
 
-import case_study.model.Employee;
+import case_study.model.Customer;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadAndWriteFileEmployee {
-    public static void writeEmployeeListToFile(List<Employee> employees, String path) {
+public class ReadAndWriteFileCustomer {
+    public static void writeCustomerListToFile(List<Customer> customers, String path) {
         File file = new File(path);
         try {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for (Employee s : employees) {
-                bufferedWriter.write(s.getInfoToEmployeeCsv());
+            for (Customer s : customers) {
+                bufferedWriter.write(s.getInFoToCustomer());
                 bufferedWriter.newLine();
             }
             bufferedWriter.flush();
@@ -24,17 +24,18 @@ public class ReadAndWriteFileEmployee {
         }
     }
 
-    public static List<Employee> readEmployeeListFromFile(String path) {
-        List<Employee> employeeList = new ArrayList<>();
+    public static List<Customer> readCustomerListToFile(String path) {
+        List<Customer> customerList = new ArrayList<>();
         File file = new File(path);
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line ;
+            String line;
             while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
-                String[] employeeArr = line.split(",");
-                Employee employee = new Employee(employeeArr[0],employeeArr[1],employeeArr[2],employeeArr[3],employeeArr[4],employeeArr[5],employeeArr[6],employeeArr[7],employeeArr[8],employeeArr[9]);
-                employeeList.add(employee);
+                String[] customerArr = line.split(",");
+                Customer customer = new Customer(customerArr[0], customerArr[1], customerArr[2], customerArr[3],
+                        customerArr[4], customerArr[5], customerArr[6], customerArr[7], customerArr[8]);
+                customerList.add(customer);
             }
             bufferedReader.close();
             fileReader.close();
@@ -43,6 +44,6 @@ public class ReadAndWriteFileEmployee {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return employeeList;
+        return customerList;
     }
 }

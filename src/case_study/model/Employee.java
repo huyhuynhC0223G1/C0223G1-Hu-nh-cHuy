@@ -9,8 +9,9 @@ public class Employee extends Person {
     public Employee() {
     }
 
-    public Employee(String id, String name, String dayOfBirth, String gender, String identityCard, String numberPhone, String email, String level, String location, String wage) {
-        super(id, name, dayOfBirth, gender, identityCard, numberPhone, email, level, location, wage);
+    public Employee(String id, String name, String dayOfBirth, String gender, String identityCard, String numberPhone,
+                    String email, String level, String location, String wage) {
+        super(id, name, dayOfBirth, gender, identityCard, numberPhone, email);
         this.level = level;
         this.location = location;
         this.wage = wage;
@@ -48,7 +49,7 @@ public class Employee extends Person {
                 ", wage='" + wage + '\'' ;
     }
 
-    public String getInfoToCsv() {
+    public String getInfoToEmployeeCsv() {
         return super.getId() + "," + super.getName() + "," + super.getDayOfBirth() + "," + super.getGender() + "," + super.getIdentityCard() + "," + super.getNumberPhone() + "," + super.getEmail() + "," + level + "," + location + "," + wage;
     }
 }

@@ -9,12 +9,10 @@ public abstract class Person {
     private String numberPhone;
     private String email;
 
-//2.iới tính, Số CMND, Số Điện Thoại, Email, Trình độ, Vị trí, lương
-
     public Person() {
     }
 
-    public Person(String id, String name, String dayOfBirth, String gender, String identityCard, String numberPhone, String email, String level, String location, String wage) {
+    public Person(String id, String name, String dayOfBirth, String gender, String identityCard, String numberPhone, String email) {
         this.id = id;
         this.name = name;
         this.dayOfBirth = dayOfBirth;

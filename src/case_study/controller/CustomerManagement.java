@@ -1,9 +1,12 @@
 package case_study.controller;
 
+import case_study.service.CustomerService;
+
 import java.util.Scanner;
 
 public class CustomerManagement {
     public void costomerMenu() {
+        CustomerService customerService=new CustomerService();
         Scanner input = new Scanner(System.in);
         String choice = "0";
         do {
@@ -16,10 +19,13 @@ public class CustomerManagement {
             choice = input.nextLine();
             switch (choice) {
                 case "1":
+                    customerService.dislay();
                     break;
                 case "2":
+                    customerService.addCustomer();
                     break;
                 case "3":
+                    customerService.editCustumer();
                     break;
                 case "4":
                     break;
