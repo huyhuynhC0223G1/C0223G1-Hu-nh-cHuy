@@ -11,7 +11,7 @@ public class EmployeeManagement {
         Scanner input = new Scanner(System.in);
         boolean flag = true;
         do {
-            System.out.println("-------------Employee Menu------------\n" +
+            System.out.print("-------------Employee Menu------------\n" +
                     "1.Display list employees\n" +
                     "2.Add new employee\n" +
                     "3.Edit employee\n" +

@@ -10,7 +10,7 @@ public class CustomerManagement {
         Scanner input = new Scanner(System.in);
         String choice = "0";
         do {
-            System.out.println("-------------Costomer Menu-------------\n" +
+            System.out.print("-------------Costomer Menu-------------\n" +
                     "1.Display list customers\n" +
                     "2.Add new customer\n" +
                     "3.Edit customer\n" +

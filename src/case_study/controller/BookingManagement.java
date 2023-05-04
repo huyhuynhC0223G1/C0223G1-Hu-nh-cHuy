@@ -7,7 +7,7 @@ public class BookingManagement {
         Scanner input = new Scanner(System.in);
         String choice = "0";
         do {
-            System.out.println("-------------Booking Menu-------------\n" +
+            System.out.print("-------------Booking Menu-------------\n" +
                     "1.Add new booking\n" +
                     "2.Display list booking\n" +
                     "3.Create new contracts\n" +

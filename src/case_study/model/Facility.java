@@ -1,21 +1,21 @@
 package case_study.model;
 
 public abstract class Facility {
-//    Mã dịch vụ, Tên dịch vụ, Diện tích sử dụng, Chi phí thuê, Số lượng người tối đa, Kiểu thuê
+    //    Mã dịch vụ, Tên dịch vụ, Diện tích sử dụng, Chi phí thuê, Số lượng người tối đa, Kiểu thuê
     private String code;
     private String nameService;
-    private String erea;
-    private String tax;
-    private String numberPeople;
+    private String usableErea;
+    private int tax;
+    private int numberPeople;
     private String rentalType;
 
     public Facility() {
     }
 
-    public Facility(String code, String nameService, String erea, String tax, String numberPeople, String rentalType) {
+    public Facility(String code, String nameService, String usableErea, int tax, int numberPeople, String rentalType) {
         this.code = code;
         this.nameService = nameService;
-        this.erea = erea;
+        this.usableErea = usableErea;
         this.tax = tax;
         this.numberPeople = numberPeople;
         this.rentalType = rentalType;
@@ -37,27 +37,27 @@ public abstract class Facility {
         this.nameService = nameService;
     }
 
-    public String getErea() {
-        return erea;
+    public String getUsableErea() {
+        return usableErea;
     }
 
-    public void setErea(String erea) {
-        this.erea = erea;
+    public void setUsableErea(String usableErea) {
+        this.usableErea = usableErea;
     }
 
-    public String getTax() {
+    public int getTax() {
         return tax;
     }
 
-    public void setTax(String tax) {
+    public void setTax(int tax) {
         this.tax = tax;
     }
 
-    public String getNumberPeople() {
+    public int getNumberPeople() {
         return numberPeople;
     }
 
-    public void setNumberPeople(String numberPeople) {
+    public void setNumberPeople(int numberPeople) {
         this.numberPeople = numberPeople;
     }
 
@@ -71,10 +71,9 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return "Facility: " +
-                "code='" + code + '\'' +
+        return "code='" + code + '\'' +
                 ", nameService='" + nameService + '\'' +
-                ", erea='" + erea + '\'' +
+                ", erea='" + usableErea + '\'' +
                 ", tax='" + tax + '\'' +
                 ", numberPeople='" + numberPeople + '\'' +
                 ", rentalType='" + rentalType + '\'';

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class PersonValidate {
     private static final String REGER_EMLOYEE_ID = "^NV-\\d{4}$";
     private static final String REGER_CUSTOMER_ID = "^KH-\\d{4}$";
-    private static final String REGER_NAME = "^([A-Z][a-z]+|([A-Z])([a-z]+)(\\s[A-Z][a-z]+){0,})$";
+    private static final String REGER_NAME = "^([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}$";
     private static final String REGER_IDENTITYCARD = "(\\d{9}|\\d{12})$";
     private static final String REGER_NUMBERPHONE = "^0\\d{9}$";
     private static final String REGER_WAGE = "^[1-9]\\d+$";
