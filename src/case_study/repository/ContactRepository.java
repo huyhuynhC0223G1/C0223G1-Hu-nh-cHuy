@@ -1,15 +1,17 @@
 package case_study.repository;
 
+import case_study.model.Booking;
 import case_study.model.Contract;
 import case_study.ultils.ReadAndWriteFileBooking;
 import case_study.ultils.ReadAndWriteFileContract;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ContactRepository implements IContactRepository {
     private List<Contract> contractList = new ArrayList<>();
+    private BookingRepository bookingRepository = new BookingRepository();
+    private TreeSet<Booking> bookings = new TreeSet<>(Comparator.comparing(Booking::getDayBooking));
+    private Queue<Booking> bookingQueue = new LinkedList<>();
     private String CONTRACT_FILE_PATH = "src/case_study/data/contract.csv";
 
     @Override
@@ -40,5 +42,10 @@ public class ContactRepository implements IContactRepository {
             }
         }
         return -1;
+    }
+    public Queue<Booking> idBooking() {
+        bookings = bookingRepository.showbooking();
+        bookingQueue.addAll(bookings);
+        return bookingQueue;
     }
 }

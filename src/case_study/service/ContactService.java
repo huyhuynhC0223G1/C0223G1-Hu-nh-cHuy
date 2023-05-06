@@ -1,15 +1,18 @@
 package case_study.service;
 
+import case_study.model.Booking;
 import case_study.model.Contract;
 import case_study.repository.ContactRepository;
 import case_study.ultils.BookingValidate;
 
 import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.TreeSet;
 
 public class ContactService implements IContactService {
     private ContactRepository contactRepository = new ContactRepository();
+    private Queue<Booking> bookingQueue = contactRepository.idBooking();
     private Scanner scanner = new Scanner(System.in);
 
     @Override
@@ -20,29 +23,28 @@ public class ContactService implements IContactService {
         }
     }
 
-    //    số hợp đồng, mã booking, số tiền cọc trước, tổng số tiền thanh toán.
-//int contractNumber, String idBooking, String reservationAmount, String totalPaymentAmount
     @Override
     public void addNewContract() {
-        int contractNumber;
-        do {
-            System.out.print("Nhập số hợp đồng");
-            contractNumber = Integer.parseInt(scanner.nextLine());
-        } while (contractNumber < 0);
-
-        String idBooking;
-        do {
-            System.out.print("Nhập mã booking");
-            idBooking = scanner.nextLine();
-        } while (!BookingValidate.checkBookingCode(idBooking));
-        System.out.print("Nhập số tiền cọc trước");
-        String reservationAmount = scanner.nextLine();
-
-        System.out.print("Nhập số tiền thanh toán");
-        String totalPaymentAmount = scanner.nextLine();
-        Contract newcontract = new Contract(contractNumber, idBooking, reservationAmount, totalPaymentAmount);
-        contactRepository.addNewContract(newcontract);
-        System.out.println("Nhập thành công contract " + newcontract.getContractNumber());
+        if (!bookingQueue.isEmpty()) {
+            int contractNumber;
+            do {
+                System.out.print("Nhập số hợp đồng");
+                contractNumber = Integer.parseInt(scanner.nextLine());
+            } while (contractNumber < 0);
+            for (Booking b : bookingQueue) {
+                System.out.println(b);
+            }
+            String idBooking = bookingQueue.poll().getIdBooking();
+            System.out.print("Nhập số tiền cọc trước");
+            String reservationAmount = scanner.nextLine();
+            System.out.print("Nhập số tiền thanh toán");
+            String totalPaymentAmount = scanner.nextLine();
+            Contract newcontract = new Contract(contractNumber, idBooking, reservationAmount, totalPaymentAmount);
+            contactRepository.addNewContract(newcontract);
+            System.out.println("Nhập thành công contract " + newcontract.getContractNumber());
+        } else {
+            System.out.println("Không tìm thấy booking.");
+        }
     }
 
     @Override

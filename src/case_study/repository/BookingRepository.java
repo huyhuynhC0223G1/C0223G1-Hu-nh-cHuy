@@ -9,7 +9,8 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 public class BookingRepository implements IBookingRepository {
-    private TreeSet<Booking> bookingList = new TreeSet<>();
+    private TreeSet<Booking> bookingList = new TreeSet<>(Comparator.comparing(Booking::getRentalStartDate).
+            thenComparing(Booking::getLeaseEndDate));
     private String BOOKING_FILE_PATH = "src/case_study/data/booking.csv";
 
     @Override
@@ -17,11 +18,6 @@ public class BookingRepository implements IBookingRepository {
         bookingList = ReadAndWriteFileBooking.readBookingListFromFile(BOOKING_FILE_PATH);
         return bookingList;
     }
-
-    public void arrangeBookingList() {
-        bookingList = ReadAndWriteFileBooking.readBookingListFromFile(BOOKING_FILE_PATH);
-    }
-
 
     @Override
     public void addNewBooking(Booking booking) {

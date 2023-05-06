@@ -61,5 +61,6 @@ public class BookingService implements IBookingService {
         Booking newbooking = new Booking(idBooking, dayBooking, rentalStartDate, leaseEndDate, customerCode, serviceCode);
         bookingRepository.addNewBooking(newbooking);
         System.out.println("Thêm mới thành công booking " + newbooking.getIdBooking());
+        this.dislay();
     }
 }
